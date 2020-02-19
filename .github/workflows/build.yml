@@ -11,3 +11,13 @@ jobs:
       uses: dante-ev/latex-action@v0.2.0
       with:
         root_file: report.tex
+    - uses: actions/upload-artifact@v1
+      if: success()
+      with:
+        name: built-pdf
+        path: report.pdf
+    - uses: actions/upload-artifact@v1
+      if: failure()
+      with:
+        name: error-log
+        path: report.log
