@@ -1,3 +1,6 @@
+## Ignore the PDF created by this template
+report.pdf
+
 ## Core latex/pdflatex auxiliary files:
 *.aux
 *.lof
@@ -113,7 +116,7 @@ acs-*.bib
 *.lzs
 
 # uncomment this for glossaries-extra (will ignore makeindex's style files!)
-# *.ist
+*.ist
 
 # gnuplottex
 *-gnuplottex-*

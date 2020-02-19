@@ -1,0 +1,74 @@
+% % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
+%
+% OSTReport -- LaTeX Documentation Template
+%
+% % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
+%
+% "THE BEER-WARE LICENSE" (Revision 42):
+%
+% Hannes Badertscher wrote this LaTeX template.
+% As long as you retain this notice you can do whatever you want with this stuff.
+% If we meet some day, and you think this stuff is worth it,
+% you can buy me a beer in return.
+% - Hannes Badertscher
+% % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
+% Magic comments for TeXStudio
+% !TeX program = pdflatex
+% !BIB program = biber
+% !TeX encoding = utf8
+% !TeX spellcheck = en_US
+% % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
+
+\RequirePackage[l2tabu, orthodox]{nag}   % Warnings for obsolete packages
+\RequirePackage{etex}                    % Load extended TeX
+\RequirePackage[utf8]{inputenc}          % Use UTF-8 as input encoding
+
+% Document information
+\newcommand*{\Author}           {Hannes Badertscher}
+\newcommand*{\Title}            {Title of this Report}
+\newcommand*{\TitleInfo}        {Bachelor Thesis}
+\newcommand*{\Subject}          {Short description of subject. This can be multi-line and \\ possibly with linebreaks.}
+\newcommand*{\Keywords}         {keyword, even more keywords, and one more}
+\newcommand*{\Lang}             {en} % document language: de or en
+\newcommand*{\IsConfidential}   {true}
+\newcommand*{\Place}            {Rapperswil}
+\newcommand*{\Print}            {true} % true for black links (print version), false for color links (pdf version)
+
+% Main header file
+\include{header/header}
+\include{header/additional-packages}
+
+% Load glossary and acronym entries. Add your custom entries in this file.
+\include{frontmatter/glossary}
+
+% Add BibLaTeX bibliography file. Important note: we use BibLaTeX and not BibTeX
+\bibliography{appendices/bibliography.bib}
+
+% % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
+\begin{document}
+
+    % Frontmatter
+    \pagenumbering{roman}
+    \include{frontmatter/titlepage}
+    \include{frontmatter/abstract}
+    \include{frontmatter/acknowledgments}
+
+    % Table of Contents
+    {
+        \cleardoublepage
+        \markleft{\contentsname}
+        \pdfbookmark[0]{\contentsname}{\contentsname}
+        \hypersetup{hidelinks}    % Don't format as links
+        \tableofcontents
+    }
+
+    \cleardoublepage
+    \pagenumbering{arabic}
+
+    % Main part
+    \include{chapters/example/example}
+
+    % Appendix
+    \include{appendices/appendix}
+
+\end{document}
