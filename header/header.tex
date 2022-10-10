@@ -46,7 +46,7 @@
 
 % Load Colors
 \usepackage{xcolor}
-% TODO: create package for OST colors
+\usepackage{header/OSTColors}
 
 % Custom header and footer
 \usepackage[automark,headwidth=textwithmarginpar,footwidth=text,headsepline=0.4pt:textwithmarginpar]{scrlayer-scrpage}  % Custom header and footer
@@ -87,10 +87,6 @@
     \usepackage[ngerman,english]{babel}  % Main language: English
 \fi
 
-% Quotation marks
-\usepackage{csquotes}
-\setquotestyle[quotes]{german}
-
 % Date and time format
 \usepackage{datetime}
 \newdateformat{titledate}{\THEDAY.~\monthname\space\THEYEAR}
@@ -98,7 +94,7 @@
 % Setup captions
 \usepackage{caption}[2008/08/24]
 \usepackage{subcaption}
-\setkomafont{captionlabel}{\scshape}
+\setkomafont{captionlabel}{\scshape\color{OSTBlackberry}}
 \captionsetup{labelsep=quad}
 
 % Appendix page
@@ -123,10 +119,10 @@
     pdfdisplaydoctitle=true,  % Show document title in pdf viewer.
     pdfcreator={LaTeX with hyperref and KOMA-Script},
     colorlinks=true,
-    linkcolor=black,
-    citecolor=black,
-    filecolor=black,
-    urlcolor=black,
+    linkcolor=OSTBlackberry,
+    citecolor=OSTBlackberry,
+    filecolor=OSTBlackberry,
+    urlcolor=OSTBlackberry,
     bookmarksnumbered=true
 ]{hyperref}
 
@@ -180,9 +176,9 @@
         \sffamily\huge\textbf{#1}%
     \end{minipage}%
     \quad%
-    {\fontsize{60pt}{3em}\selectfont\sffamily\textbf{\textcolor{black}{\thechapter}}}%
+    {\fontsize{60pt}{3em}\selectfont\sffamily\textbf{\textcolor{OSTBlackberry}{\thechapter}}}%
     \vskip 5\p@%
-    \noindent\makebox[\dimexpr\textwidth-2em][l]{\textcolor{black}{\rule{\dimexpr\paperwidth-\oddsidemargin-\hoffset-1in}{0.7pt}}}%
+    \noindent\makebox[\dimexpr\textwidth-2em][l]{\textcolor{OSTBlackberry}{\rule{\dimexpr\paperwidth-\oddsidemargin-\hoffset-1in}{0.7pt}}}%
     \vskip 25\p@%
     \normalfont\normalsize%
 }
@@ -195,8 +191,44 @@
         \sffamily\huge\textbf{#1}%
     \end{minipage}%
     \vskip 5\p@%
-    \noindent\makebox[\dimexpr\textwidth-2em][l]{\textcolor{black}{\rule{\dimexpr\paperwidth-\oddsidemargin-\hoffset-1in}{0.7pt}}}%
+    \noindent\makebox[\dimexpr\textwidth-2em][l]{\textcolor{OSTBlackberry}{\rule{\dimexpr\paperwidth-\oddsidemargin-\hoffset-1in}{0.7pt}}}%
     \vskip 25\p@%
     \normalfont\normalsize%
 }
 \makeatother
+
+% Set custom reference names
+\addto\extrasenglish{% English
+    \renewcommand*{\figureautorefname}{Fig.}             % fig:
+    \renewcommand*{\tableautorefname}{Tab.}              % tab:
+    \renewcommand*{\equationautorefname}{Eq.}            % eq:
+    \renewcommand*{\chapterautorefname}{Chp.}            % chp:
+    \renewcommand*{\sectionautorefname}{Sec.}            % sec:
+    \renewcommand*{\subsectionautorefname}{Sec.}         % subsec:
+    \providecommand*{\listingautorefname}{Listing}
+}
+\addto\extrasngerman{% German
+    \renewcommand*{\figureautorefname}{Abb.}             % fig:
+    \renewcommand*{\tableautorefname}{Tab.}              % tab:
+    \renewcommand*{\equationautorefname}{Gl.}            % eq:
+}
+
+% Custom marginpar setup
+\usepackage{ragged2e}
+\newcommand*{\oldmarginpar}{}
+\let\oldmarginpar\marginpar
+\renewcommand*{\marginpar}[1]{%
+    \leavevmode\oldmarginpar%
+    [\RaggedLeft\scshape\footnotesize\textcolor{OSTBlackberry}{\hspace{0pt}#1}]%
+    {\RaggedRight\scshape\footnotesize\textcolor{OSTBlackberry}{\hspace{0pt}#1}}%
+}
+
+% % % % % % % % % % % % % %
+% Itemize items
+\newcommand{\ostlistitemi}{\textcolor{OSTBlackberry}{\raisebox{.3ex}{\tiny$\blacksquare$}}}
+\newcommand{\ostlistitemii}{\textcolor{black}{\raisebox{.3ex}{\tiny$\blacksquare$}}}
+\newcommand{\ostlistitemiii}{\textcolor{black}{\raisebox{.3ex}{\tiny$\blacktriangleright$}}}
+
+\renewcommand{\labelitemi}{\ostlistitemi}
+\renewcommand{\labelitemii}{\ostlistitemii}
+\renewcommand{\labelitemiii}{\ostlistitemiii}

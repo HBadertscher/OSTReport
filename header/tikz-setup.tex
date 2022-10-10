@@ -1,0 +1,50 @@
+% % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
+%
+% OSTReport -- Setup for TikZ pictures and plots
+%
+% % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
+\usepackage{tikz}
+\usepackage{pgfplots}
+
+% Tikz Libraries
+\usetikzlibrary{positioning}
+
+% Use Sans-Serif family in TikZ graphics
+\tikzset{font=\sffamily}
+
+% If there are many TikZ images, make them external.
+% Note: you'll have to call pdflatex with the -shell-escape flag!
+%\usetikzlibrary{external}
+%\tikzexternalize[prefix=tikz/]
+
+% Create cycle list with OST colors
+\pgfplotscreateplotcyclelist{ostcolorlist}{%
+    OSTDarkPurple,every mark/.append style={solid,fill=OSTDarkPurple} \\%
+    OSTLightPurple,every mark/.append style={solid,fill=OSTLightPurple} \\%
+    OSTDarkGreen,every mark/.append style={solid,fill=OSTDarkGreen} \\%
+    OSTLightGreen,every mark/.append style={solid,fill=OSTLightGreen} \\%
+    OSTDarkRed,every mark/.append style={solid,fill=OSTDarkRed} \\%
+    OSTLightRed,every mark/.append style={solid,fill=OSTLightRed} \\%
+    OSTDarkBlue,every mark/.append style={solid,fill=OSTDarkBlue} \\%
+    OSTLightkBlue,every mark/.append style={solid,fill=OSTLightBlue} \\%
+    OSTDarkOrange,every mark/.append style={solid,fill=OSTDarkOrange} \\%
+    OSTLightOrange,every mark/.append style={solid,fill=OSTLightOrange} \\%
+}
+% Set default cycle list for plots
+\pgfplotsset{cycle multi list={mark list\nextlist ostcolorlist}}
+
+% Set default cycle list for bar plots
+\pgfplotsset{
+/pgfplots/bar cycle list/.style={/pgfplots/cycle list={%
+        {OSTDarkPurple,mark=none},%
+        {OSTLightPurple,mark=none},%
+        {OSTDarkGreen,mark=none},%
+        {OSTLightGreen,mark=none},%
+        {OSTDarkRed,mark=none},%
+        {OSTLightRed,mark=none},%
+        {OSTDarkBlue,mark=none},%
+        {OSTLightBlue,mark=none},%
+        {OSTDarkOrange,mark=none},%
+        {OSTLightOrange,mark=none},%
+}}
+}
