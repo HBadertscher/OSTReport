@@ -1,1 +1,51 @@
-\maketitle
+% % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
+%
+% OSTReport: Titlepage inspired by the OST CI
+%
+% % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
+% "THE BEER-WARE LICENSE" (Revision 42):
+% Hannes Badertscher (hbaderts@hsr.ch) wrote this file. As long as you retain 
+% this notice you can do whatever you want with this stuff. If we meet some day, 
+% and you think this stuff is worth it, you can buy me a beer in return. 
+% - Hannes Badertscher
+% % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
+
+\providecommand*{\True}{true}
+\begin{titlepage}
+    \begin{tikzpicture}[remember picture,overlay,shift=(current page.south west)]
+       \useasboundingbox (0, 0) rectangle (\paperwidth, \paperheight);
+        
+        % Background image
+        \node[anchor=north west,inner sep=0pt] at (\TitleImageX, \TitleImageY) (bgimage) {\includegraphics[width=\TitleImageWidth]{\TitleImage}};
+        \node[anchor=north west,inner sep=0pt] at (0, 298.4mm) (bean) {\includegraphics[width=21cm, height=297mm]{frontmatter/thebean.png}};
+        
+        % OST logo
+        \node[anchor=north west,inner sep=0] at (147.4mm, 293.9mm) {\includegraphics[width=4.15cm]{header/OSTLogo.png}};
+        
+        % Text
+        \node[anchor=west] at (90mm, 100mm) (titleinfo) {\parbox{100mm}{\Large\sffamily\TitleInfo}};
+        \node[anchor=west,below=5mm of titleinfo] (title) {\parbox{100mm}{\huge\sffamily\bfseries\Title}};
+        \node[anchor=west,below=3mm of title] (subject) {\parbox{100mm}{\Large\sffamily\Subject}};
+        \ifx \IsConfidential \True
+            \ifx \Lang \LangDE
+                \node[anchor=west,below=5mm of subject] (conf) {\parbox{100mm}{\LARGE\MakeUppercase{Vertraulich}}};
+            \else
+                \node[anchor=west,below=5mm of subject] (conf) {\parbox{100mm}{\LARGE\MakeUppercase{Confidential}}};
+            \fi
+        \else
+            \node (conf) at (subject) {\parbox{100mm}{}};
+        \fi
+ 
+        \node[anchor=west, below=5mm of conf] (date) {\parbox{100mm}{\Large\sffamily\titledate\today}};
+        \node[anchor=west, below=1mm of date] (author) {\parbox{100mm}{\Large\sffamily\Author}};
+
+    \end{tikzpicture}
+\end{titlepage}
+
+% Verso of title page
+\thispagestyle{empty}
+\begin{minipage}[t][\textheight][b]{5.8cm}
+    \scriptsize
+    This document was typeset using \LaTeX~and KOMA-Script and the OSTReport style by H.Badertscher. \\
+    \Place,~\titledate\today\hfill
+\end{minipage}
